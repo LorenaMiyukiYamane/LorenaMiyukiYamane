@@ -2,46 +2,468 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>山根ロレナ美由紀 - スペイン語翻訳・通訳サービス</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山根ロレナみゆき | スペイン語翻訳サービス</title>
     <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #457b9d;
+            --accent-color: #a8dadc;
+            --background-color: #f1faee;
+            --text-color: #1d3557;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans JP', 'Hiragino Sans', 'Meiryo', sans-serif;
+        }
         body {
-            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
-            margin: 40px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .tagline {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        .navbar {
+            background-color: var(--secondary-color);
+            padding: 0.8rem 0;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-container a:hover {
+            color: var(--accent-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1000/400');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #c1282d;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 0.8rem auto 0;
+        }
+        .about-section {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        .profile-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .services-section {
+            padding: 4rem 0;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-content {
+            padding: 1.5rem;
+        }
+        .service-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .pricing-section {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        .pricing-table th, .pricing-table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: left;
+        }
+        .pricing-table th {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        .pricing-table tr:nth-child(even) {
             background-color: #f9f9f9;
-            color: #333;
         }
-        h1, h2 {
-            color: #005bbb;
+        .contact-section {
+            padding: 4rem 0;
+            background-color: var(--accent-color);
+            color: var(--text-color);
         }
-        .contact {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #e6f2ff;
-            border-radius: 10px;
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .footer-links {
+            margin: 1rem 0;
+        }
+        .footer-links a {
+            color: white;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .text-highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">山根ロレナみゆき</div>
+        <div class="tagline">スペイン語翻訳・通訳サービス</div>
+    </header>
 
-    <h1>山根ロレナ美由紀</h1>
-    <h2>スペイン語翻訳・通訳サービス</h2>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#about">プロフィール</a>
+            <a href="#services">サービス内容</a>
+            <a href="#pricing">料金</a>
+            <a href="#contact">お問い合わせ</a>
+        </div>
+    </nav>
 
-    <p>ミツモアでご紹介している内容と同様に、安心してご依頼いただけます。</p>
+    <section class="hero">
+        <div class="container">
+            <h1>プロフェッショナルなスペイン語翻訳サービス</h1>
+            <p>スペイン人の父と日本人の母を持つバイリンガルとして、高品質な翻訳・通訳サービスを提供しています。ビジネス文書から法律文書、技術文書まで幅広く対応いたします。</p>
+            <a href="#contact" class="btn">お問い合わせはこちら</a>
+        </div>
+    </section>
 
-    <h2>料金一覧</h2>
-    <ul>
-        <li>戸籍謄本翻訳　一律5,000円（2枚目以降1,000円/枚）</li>
-        <li>住民票翻訳　4,000円</li>
-        <li>婚姻届翻訳　5,000円（2枚目以降1,000円/枚）</li>
-        <li>その他書類もご相談ください。</li>
-    </ul>
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">プロフィール</h2>
+            <div class="about-grid">
+                <div>
+                    <img src="/api/placeholder/400/400" alt="山根ロレナみゆき" class="profile-img">
+                </div>
+                <div>
+                    <h3>山根ロレナみゆき</h3>
+                    <p>スペイン・マドリード生まれ。スペイン人の父と日本人の母を持つ完全バイリンガルです。マドリード・コンプルテンセ大学で翻訳学を専攻し、翻訳家としての基礎を築きました。</p>
+                    <p>帰国後、日本の大手企業での翻訳業務を経て、フリーランスとして活動を開始。スペイン語と日本語の間の微妙なニュアンスを汲み取った、自然で正確な翻訳を心がけています。</p>
+                    <p>これまでに<span class="text-highlight">500件以上</span>の翻訳実績があり、特にビジネス文書、契約書、技術マニュアルなどの専門的な文書の翻訳に強みを持っています。</p>
+                    <h4>資格・スキル</h4>
+                    <ul>
+                        <li>スペイン国立翻訳者通訳者協会認定翻訳者</li>
+                        <li>日本翻訳連盟会員</li>
+                        <li>DELE C2レベル（スペイン語最高レベル）</li>
+                        <li>日本語能力試験N1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2>お問い合わせ</h2>
-    <div class="contact">
-        <p><strong>電話番号：</strong>080-1227-0601</p>
-        <p><strong>メールアドレス：</strong><a href="mailto:miyuki270601@gmail.com">miyuki270601@gmail.com</a></p>
-    </div>
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">サービス内容</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="文書翻訳" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">文書翻訳</h3>
+                        <p>ビジネス文書、契約書、技術マニュアル、学術論文など、あらゆる種類の文書を正確に翻訳します。専門用語にも対応可能です。</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="通訳サービス" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">通訳サービス</h3>
+                        <p>ビジネスミーティング、国際会議、商談など、様々なシチュエーションでの通訳サービスを提供します。逐次通訳、同時通訳どちらも対応可能です。</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="ウェブサイト翻訳" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">ウェブサイト翻訳</h3>
+                        <p>日本語からスペイン語へ、またはスペイン語から日本語へのウェブサイト翻訳を行います。SEOに配慮した翻訳も可能です。</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="字幕・吹き替え" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">字幕・吹き替え</h3>
+                        <p>映画、ドキュメンタリー、企業PR動画などの字幕・吹き替え翻訳に対応。文化的背景を考慮した自然な翻訳を提供します。</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="語学レッスン" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">語学レッスン</h3>
+                        <p>オンラインまたは対面でのスペイン語レッスンを提供しています。初心者から上級者まで、レベルに合わせたカリキュラムをご用意します。</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="文化コンサルティング" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">文化コンサルティング</h3>
+                        <p>スペイン語圏の国々でビジネスを展開する企業向けに、文化的背景や慣習についてのアドバイスを提供します。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">料金表</h2>
+            <p>以下は基本的な料金目安です。具体的な金額は、文書の専門性、納期、ボリュームなどにより変動します。お気軽にお問い合わせください。</p>
+            
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>サービス</th>
+                        <th>単位</th>
+                        <th>料金（税別）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>一般文書翻訳（日本語→スペイン語）</td>
+                        <td>1ワード</td>
+                        <td>15円〜</td>
+                    </tr>
+                    <tr>
+                        <td>一般文書翻訳（スペイン語→日本語）</td>
+                        <td>1ワード</td>
+                        <td>18円〜</td>
+                    </tr>
+                    <tr>
+                        <td>専門文書翻訳（法律・医療・技術）</td>
+                        <td>1ワード</td>
+                        <td>20円〜</td>
+                    </tr>
+                    <tr>
+                        <td>ウェブサイト翻訳</td>
+                        <td>1ページ</td>
+                        <td>5,000円〜</td>
+                    </tr>
+                    <tr>
+                        <td>通訳サービス（逐次通訳）</td>
+                        <td>1時間</td>
+                        <td>10,000円〜</td>
+                    </tr>
+                    <tr>
+                        <td>通訳サービス（同時通訳）</td>
+                        <td>1時間</td>
+                        <td>15,000円〜</td>
+                    </tr>
+                    <tr>
+                        <td>字幕翻訳</td>
+                        <td>1分</td>
+                        <td>1,500円〜</td>
+                    </tr>
+                    <tr>
+                        <td>語学レッスン</td>
+                        <td>1時間</td>
+                        <td>5,000円〜</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>※長期プロジェクトや大量の翻訳依頼には割引が適用される場合があります。</p>
+            <p>※緊急案件や土日祝日の対応は追加料金が発生する場合があります。</p>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">お問い合わせ</h2>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <h3>山根ロレナみゆき</h3>
+                    <p>スペイン語翻訳・通訳サービス</p>
+                    <p>メール: info@lorena-translation.com</p>
+                    <p>電話: 090-XXXX-XXXX</p>
+                    <p>所在地: 東京都新宿区西新宿X-X-X</p>
+                    <p>対応時間: 平日 9:00〜18:00</p>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="お名前" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="メールアドレス" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="電話番号">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>ご希望のサービスを選択してください</option>
+                                <option value="document">文書翻訳</option>
+                                <option value="interpretation">通訳サービス</option>
+                                <option value="website">ウェブサイト翻訳</option>
+                                <option value="subtitle">字幕・吹き替え</option>
+                                <option value="lesson">語学レッスン</option>
+                                <option value="consulting">文化コンサルティング</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="ご依頼内容の詳細をお書きください" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">送信する</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 山根ロレナみゆき スペイン語翻訳サービス</p>
+            <div class="footer-links">
+                <a href="#about">プロフィール</a>
+                <a href="#services">サービス内容</a>
+                <a href="#pricing">料金</a>
+                <a href="#contact">お問い合わせ</a>
+                <a href="#">プライバシーポリシー</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
